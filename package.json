@@ -1,0 +1,23 @@
+{
+  "name": "dai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://oauth2: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@github.com/sofiruba/dai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sofiruba/dai/issues"
+  },
+  "homepage": "https://github.com/sofiruba/dai#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
