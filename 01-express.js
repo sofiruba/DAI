@@ -75,9 +75,12 @@ app.use(express.json());
              } 
          })
     }
-
-       
-
+    function numeroCentena(){
+    const in_tenth = (number) => MessagePort.floor(number/10) +1;
+    for (let i=1; i<100; i++) {
+        console.log(i, in_tenth(i));
+    }}
+    
     app.post('/numero_aleatorio', (req, res)=>{
     
         console.log(req.body.numero);
@@ -116,6 +119,7 @@ app.use(express.json());
         let sacarNumeros = sacarNumero(req.body.numero);
         res.send(sacarNumeros);
     })
+    
     app.listen(port, () => {
         console.log(`example app listening on port ${port}`);
     });
