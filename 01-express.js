@@ -14,7 +14,7 @@ app.use(express.json());
             nombre: null,
             valores: [],      
         }
-        for (let index = 0; index < 10; index++) {
+        for (let i = 0; i < 10; i++) {
             carton.valores.push(NumeroAleatorio(10))
         
         }
@@ -23,7 +23,7 @@ app.use(express.json());
 
     function crearCartones(num){
 
-        for (let index = 0; index < num; index++) {
+        for (let i = 0; i < num; i++) {
             cartones.push(crearCarton(10))
         
         }
@@ -38,9 +38,9 @@ app.use(express.json());
     let nombres = [];
     function obtenerCarton(nombre){
         nombres.push(nombre);
-        for (let index = 0; index < cartones.length; index++) {
-            if (cartones[index].carton.nombre = nombres[index]){
-                return cartones[index].carton.valores;
+        for (let i = 0; i < cartones.length; i++) {
+            if (cartones[i].carton.nombre = nombres[i]){
+                return cartones[i].carton.valores;
             } 
             else{
                 return -1; 
@@ -104,6 +104,7 @@ app.use(express.json());
         console.log(req.body.nombre); 
          let s = obtenerCarton(req.body.nombre);    
          res.send(s);
+         console.log(s);
        
      
     })
