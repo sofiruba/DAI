@@ -96,15 +96,12 @@ app.use(express.json());
         console.log(req.body.cartones);    
         let y = iniciarJuego(req.body.cartones);    
         res.send([y]);
-        
-        
     })
 
     app.get('/obtener_Carton', (req, res)=>{
         console.log(req.body.nombre); 
          let s = obtenerCarton(req.body.nombre);    
          res.send(s);
-         console.log(s);
        
      
     })
