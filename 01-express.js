@@ -99,16 +99,16 @@ app.use(express.json());
     })
 
     app.get('/obtener_Carton', (req, res)=>{
-        console.log(req.body.nombre); 
-         let s = obtenerCarton(req.body.nombre);    
+        console.log(req.query.nombre); 
+         let s = obtenerCarton(req.query.nombre);    
          res.send(s);
        
      
     })
 
     app.get('/cartones', (req, res)=>{
-        console.log(req.body.nombre);
-        let cartonesAMostrar = devolverCartones(req.body.nombre);
+        console.log(req.query.nombre);
+        let cartonesAMostrar = devolverCartones(req.query.nombre);
         res.send(cartonesAMostrar);
     })
 
