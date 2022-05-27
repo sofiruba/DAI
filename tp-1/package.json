@@ -1,0 +1,22 @@
+{
+  "name": "tp-1",
+  "version": "1.0.0",
+  "description": "tp 1 Rubachin Munich",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "sofiruba"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "index.js": "0.0.3",
+    "iso-country-currency": "^0.6.0"
+  }
+}
