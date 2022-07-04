@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "tp4",
+    "slug": "tp4",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "tp4"
+}
