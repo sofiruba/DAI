@@ -1,7 +1,7 @@
 import React , {useState} from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
 import axios from 'axios'
-import useNavigation from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 export default function Login() {
     const navigation = useNavigation();
@@ -11,9 +11,11 @@ export default function Login() {
         axios.post('http://challenge-react.alkemy.org/', user)
             .then(res => {
                 console.log(res)
+                navigation.navigate('Home')
             })
             .catch(error => {
                 console.error( error)
+   
             })
     }
     return (
