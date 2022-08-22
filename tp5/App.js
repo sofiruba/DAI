@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
+import { createContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Main from './src/navigation/main';
 import Login from './src/screens/login';
-
+export const PlatosContext = createContext([])
 export default function App() {
+
   return (
 
       <Main></Main>
