@@ -2,22 +2,29 @@ import React , {useState} from "react";
 import { View, TextInput, Button, StyleSheet, Text } from "react-native";
 import axios from 'axios'
 import {useNavigation} from '@react-navigation/native';
+import Loading from "../components/loading";
 
 export default function Login() {
     const navigation = useNavigation();
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [isLoading , setLoading] = useState()
+
     const login = async (user) => {
+        setLoading(true)
         axios.post('http://challenge-react.alkemy.org/', user)
             .then(res => {
                 console.log(res)
                 navigation.navigate('Home')
+                setLoading(false)
             })
             .catch(error => {
                 console.error( error)
    
             })
     }
+
+    
     return (
         <View style={styles.container}>
             <View>
@@ -27,6 +34,9 @@ export default function Login() {
             <TextInput secureTextEntry={true} style={styles.input} onChangeText={(text) => setPassword(text)} placeholder="Password"></TextInput>
             <View style={styles.boton} >
             <Button  title="Login" color="#88ba93" onPress={()=> login({"email": email, "password": password})} />
+            </View>
+            <View>
+                <Loading bool={isLoading}></Loading>
             </View>
         </View>
     )
