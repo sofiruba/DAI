@@ -7,7 +7,7 @@ import { PlatosContext } from '../../App'
 import Buscador from "../components/buscador";
 
 export default function Home() {
-    const [platos, setPlatos] = useState({})
+    const [platos, setPlatos] = useState([])
     const eliminar_plato = (id) => {
         let nuevos_platos = platos.filter(p => p.id !== id)
         setPlatos(nuevos_platos)
@@ -36,9 +36,9 @@ export default function Home() {
 
     return (
         <View>
-            <Buscador setPlatos={setPlatos}></Buscador>
+            
             <PlatosContext.Provider value={platos}>
-                <ListadoPlatos props={{eliminar_plato, crear_plato}} ></ListadoPlatos>
+                <ListadoPlatos  ></ListadoPlatos>
             </PlatosContext.Provider>
 
         </View>

@@ -8,7 +8,7 @@ export default function  ListadoPlatos({props}){
     return (
         <View>
             {Platos.map(p=>( //aca ta cada plato, hacer una card por plato? no es necesario usar props, el context ya esta
-                <Card props={{p, props}}></Card>
+                <Card props={p}></Card>
             ))}
         </View>
     )
