@@ -3,7 +3,6 @@ import { View, SafeAreaView } from "react-native";
 
 export default function Card({ props }) {
     return (
-
         <SafeAreaView>
 
             <View>
@@ -13,9 +12,8 @@ export default function Card({ props }) {
 
             </View>
             <View>
-                <Image source={props.foto}></Image>
+                <Image source={{uri: props.foto}}></Image>
             </View>
-
         </SafeAreaView>
 
     )
