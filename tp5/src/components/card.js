@@ -7,12 +7,12 @@ export default function Card({ props }) {
 
             <View>
                 <View>
-                    <Text>{props.plato}</Text>
+                    <Text>{props.title}</Text>
                 </View>
 
             </View>
             <View>
-                <Image source={{uri: props.foto}}></Image>
+                <Image source={{uri: props.image}}></Image>
             </View>
         </SafeAreaView>
 
