@@ -1,20 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, SafeAreaView, Text, Image, StyleSheet } from "react-native";
-
+import { useNavigation } from "@react-navigation/native";
+import Agregar from "./agregarButton";
 export default function Card({ props }) {
+    const navigation = useNavigation()
+    const plato = props.p
+    const eliminar_plato = props.eliminar_plato
+    const agregar_plato = props.agregar_plato
     return (
         <View style={{ backgroundColor: '#deffe5' }}>
             <SafeAreaView style={styles.card}>
                 <View>
-                    <Text>{props.p.title}</Text>
+                    <Text>{plato.title}</Text>
                 </View>
 
                 <View>
-                    <Image source={{ uri: props.p.image }}></Image>
+                    <Image source={{ uri: plato.image }}></Image>
                 </View>
-                <View style={styles.row}>
-                    <Text style={styles.eliminar} onPress={() => props.eliminar_plato(props.p.id)}> Eliminar</Text>
-                    <Text> Ver detalle</Text>
+                <View >
+                    <Agregar props={{ agregar_plato, eliminar_plato, plato}}></Agregar>
+                    <Text onPress={()=> navigation.navigate('Detalle', {plato})}>Ver detalle</Text>
                 </View>
             </SafeAreaView>
         </View>
@@ -36,8 +41,5 @@ const styles = StyleSheet.create({
     row:{
         flexDirection: "row",
         flexWrap: "wrap",
-    },
-    eliminar: {
-        color: 'red'
     }
 });

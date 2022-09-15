@@ -1,7 +1,7 @@
 import { View, Text, Button, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import { useNavigation } from "@react-navigation/native";
 
-export default function Detalle() {
+export default function Detalle(plato) {
     const navigation = useNavigation();
 
     return (
