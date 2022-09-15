@@ -6,7 +6,7 @@ import ListadoPlatos from "../components/listadoPlatos";
 import { PlatosContext } from '../../App'
 import Buscador from "../components/buscador";
 
-export default function Home() {
+export default function Home(User) {
     const [platos, setPlatos] = useState([])
     const eliminar_plato = (id) => {
         let nuevos_platos = platos.filter(p => p.id !== id)
