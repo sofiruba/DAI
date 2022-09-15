@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
         flex: 1,
         height: '100%',
         width: '100%',
+        padding: 10,
     },
     input: {
         backgroundColor: 'white',
@@ -74,12 +75,16 @@ const styles = StyleSheet.create({
     titulo: {
         fontSize: 30,
         marginBottom: 50,
-        alignSelf: 'center',
+        width: '100%',
+        height: '100%',
+        marginLeft: 12,
+        marginTop: 12,
     },
     bcktitulo: {
-        width:'70%',
+        width: '65%',
         height: '10%',
         backgroundColor: '#d4a179',
+        borderWidth: 2,
         borderColor: '#fff',
     },
     img: {
