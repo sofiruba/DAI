@@ -1,15 +1,27 @@
 import React, { useContext } from "react";
-import { View, Text } from "react-native";
-import { PlatosContext } from "../../App";
+import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { MenuContext } from "../../App";
 import Card from "./card";
 
-export default function  ListadoPlatos({props}){
-    const Platos = useContext(PlatosContext)
+export default function ListadoPlatos({ platos }) {
+    const Menu = useContext(MenuContext)
+    const eliminar_plato = Menu.eliminar_plato
+    const agregar_plato = Menu.agregar_plato
     return (
-        <View>
-            {Platos.map(p=>( //aca ta cada plato, hacer una card por plato? no es necesario usar props, el context ya esta
-                <Card props={p}></Card>
-            ))}
-        </View>
+        <SafeAreaView style={styles.container} >
+            <ScrollView >
+                {platos.map(p => ( //aca ta cada plato, hacer una card por plato? no es necesario usar props, el context ya esta
+                    <Card key={p.id} style={styles.card} props={{ p, eliminar_plato, agregar_plato }}></Card>
+                ))}
+            </ScrollView>
+        </SafeAreaView>
     )
 } 
+const styles = StyleSheet.create({
+    container:{
+        height: 500,
+        marginTop: 20,
+
+    },
+
+})

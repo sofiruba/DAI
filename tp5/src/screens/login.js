@@ -35,12 +35,12 @@ export default function Login() {
         <ImageBackground source={img} resizeMode="cover" style={styles.img}>
             <View style={styles.container}>
                 <View style={styles.bcktitulo}>
-                    <Text style={styles.titulo}>RESTAURANTE</Text>
+                    <Text style={styles.titulo}>React Native Challenge</Text>
                 </View>
                 <TextInput style={styles.input} onChangeText={(text) => setEmail(text)} placeholder="Email"></TextInput>
                 <TextInput secureTextEntry={true} style={styles.input} onChangeText={(text) => setPassword(text)} placeholder="Password"></TextInput>
                 <View style={styles.boton} >
-                    <Button title="Login" color="#d4a179" onPress={() => login({ "email": email, "password": password })} />
+                    <Text  onPress={() => login({ "email": email, "password": password })} >Login</Text>
                 </View>
                 <View>
                     <Loading bool={isLoading}></Loading>
@@ -62,30 +62,35 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         borderRadius: 10,
         marginTop: 20,
-        width: 200,
-        height: 45,
+        width: 250,
+        height: 50,
         marginLeft: '2%',
     },
     boton: {
         marginTop: 20,
         width: 100,
-        borderWidth: 2,
-        borderColor: '#000',
+        height:50,
+        backgroundColor:"#d4a179",
+        alignItems:'center',
+        justifyContent: 'center',
+        borderRadius: 20,
+        shadowColor: '#000',
+        shadowOpacity: 0.5,
+        elevation: 5
     },
     titulo: {
         fontSize: 30,
-        marginBottom: 50,
-        width: '100%',
-        height: '100%',
-        marginLeft: 12,
-        marginTop: 12,
     },
     bcktitulo: {
-        width: '65%',
-        height: '10%',
-        backgroundColor: '#d4a179',
-        borderWidth: 2,
-        borderColor: '#fff',
+        width: 300,
+        height: 100,
+        shadowColor: '#000',
+        elevation: 5,
+        shadowOpacity: 0.1,
+        justifyContent:'center',
+        backgroundColor: '#f2c099',
+        alignItems:'center',
+        borderRadius: 20
     },
     img: {
         flex: 1,
