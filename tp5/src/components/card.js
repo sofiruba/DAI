@@ -2,8 +2,26 @@ import React, { useContext, useState } from "react";
 import { View, SafeAreaView, Text, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MenuContext } from "../../App";
+import axios from "axios";
+import Loading from "./loading";
+
 export default function Card({ props }) {
+    const [isLoading, setLoading] = useState(false)
     const Menu = useContext(MenuContext)
+    const plato = props.p
+    const agregar_plato = Menu.agregar_plato
+    const eliminar_plato = Menu.eliminar_plato
+    const navigation = useNavigation()
+    console.log(plato)
+    const getDetalle = () => {
+        setLoading(true)
+        return axios.get('https://api.spoonacular.com/recipes/' + plato.id + '/information?apiKey=962c714fd9eb49ec95f836fcc8be05bf')
+            .then(res => {
+                let plato_detalle = res.data
+                navigation.navigate('Detalle', { plato_detalle })
+                setLoading(false)
+            })
+    }
     return (
 
 
@@ -15,21 +33,22 @@ export default function Card({ props }) {
                 <View>
                     <Text style={styles.title}>{plato.title}</Text>
                     <View >
-                {
-                    Menu.menu.includes(plato) ? <Text style={{color: 'red', textDecorationLine: 'underline'}} onPress={() => eliminar_plato(plato.id)}>Eliminar</Text> : <Text  onPress={() => agregar_plato(plato)}>Agregar </Text>
-                }
-                <Text onPress={() => navigation.navigate('Detalle', { plato })}>Ver detalle</Text>
-            </View>
-                </View>
-                    
-                    <View style={styles.img}>
-                        <Image style={styles.image} source={{ uri: plato.image }}></Image>
-
+                        {
+                            Menu.menu.includes(plato) ? <Text style={{ color: 'red', textDecorationLine: 'underline' }} onPress={() => eliminar_plato(plato.id)}>Eliminar</Text> : <Text onPress={() => agregar_plato(plato)}>Agregar </Text>
+                        }
+                        <Text onPress={getDetalle}>Ver detalle</Text>
+                        <Loading bool={isLoading}></Loading>
+                    </View>
                 </View>
 
+                <View style={styles.img}>
+                    <Image style={styles.image} source={{ uri: plato.image }}></Image>
+
+                </View>
+
 
             </View>
-            
+
         </SafeAreaView>
 
     )
@@ -48,13 +67,13 @@ const styles = StyleSheet.create({
     shadow: {
         shadowColor: '#171717',
         shadowOpacity: 0.1,
-        elevation: 15,
+        elevation: 3,
     },
     image: {
-        height: 100,
-        width: 100,
+        height: 50,
+        width: 50,
         marginTop: 5,
-        
+
     },
     titulo: {
         fontSize: 20,
@@ -65,12 +84,12 @@ const styles = StyleSheet.create({
         marginLeft: 80,
         marginTop: 20,
         justifyContent: 'center',
-        alignItems:'center'
+        alignItems: 'center'
     },
-    
+
     row: {
         flexDirection: "row",
         flexWrap: "wrap",
     },
-   
+
 });

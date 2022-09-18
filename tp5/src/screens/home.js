@@ -5,12 +5,14 @@ import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import ListadoPlatos from "../components/listadoPlatos";
 import { useNavigation } from "@react-navigation/native";
 import { MenuContext } from '../../App'
+import Loading from "../components/loading";
 
 export default function Home(user) {
     const navigation = useNavigation();
     const [platos, setPlatos] = useState([])
     const [menu, setMenu] = useState([])
     const [buscado, buscar] = useState(false)
+    const [isLoading, setLoading] = useState(false)
     const eliminar_plato = (id) => {
         let nuevo_menu = menu.filter(p => p.id !== id)
         setMenu(nuevo_menu)
@@ -24,10 +26,12 @@ export default function Home(user) {
         console.log('agregado', menu)
     }
     const getPlatos = () => {
+        setLoading(true)
         return axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=962c714fd9eb49ec95f836fcc8be05bf&&query=' + buscado)
             .then(res => {
                 let listado = res.data.results
                 setPlatos(listado)
+                setLoading(false)
             }
             )
             .catch(err => console.log(err))
@@ -49,6 +53,7 @@ export default function Home(user) {
                 </View>
                 <View>
                     <MenuContext.Provider value={props}>
+                        <Loading bool={isLoading}></Loading>
                         <ListadoPlatos platos={platos}></ListadoPlatos>
                         <View style={styles.btn} onTouchStart={() => navigation.navigate('Menu', { props })} >
                         <Text > Ver menu</Text>
