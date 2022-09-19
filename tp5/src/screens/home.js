@@ -20,7 +20,6 @@ export default function Home(user) {
 
 
     }
-    console.log(menu)
     const agregar_plato = (plato) => {
         setMenu(menu => [...menu, plato])
         console.log('agregado', menu)

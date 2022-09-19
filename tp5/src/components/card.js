@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, SafeAreaView, Text, Image, StyleSheet } from "react-native";
+import { View, SafeAreaView, Text, Image, StyleSheet , Button} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MenuContext } from "../../App";
 import axios from "axios";
@@ -12,7 +12,6 @@ export default function Card({ props }) {
     const agregar_plato = Menu.agregar_plato
     const eliminar_plato = Menu.eliminar_plato
     const navigation = useNavigation()
-    console.log(plato)
     const getDetalle = () => {
         setLoading(true)
         return axios.get('https://api.spoonacular.com/recipes/' + plato.id + '/information?apiKey=962c714fd9eb49ec95f836fcc8be05bf')
@@ -32,9 +31,9 @@ export default function Card({ props }) {
             <View style={styles.row}>
                 <View>
                     <Text style={styles.title}>{plato.title}</Text>
-                    <View >
+                    <View style={styles.cont} >
                         {
-                            Menu.menu.includes(plato) ? <Text style={{ color: 'red', textDecorationLine: 'underline' }} onPress={() => eliminar_plato(plato.id)}>Eliminar</Text> : <Text onPress={() => agregar_plato(plato)}>Agregar </Text>
+                            Menu.menu.includes(plato) ? <Button title="Eliminar"  color={'red'}  onPress={() => eliminar_plato(plato.id)}></Button> : <Button title="Agregar" onPress={() => agregar_plato(plato)}></Button>
                         }
                         <Text onPress={getDetalle}>Ver detalle</Text>
                         <Loading bool={isLoading}></Loading>
@@ -58,7 +57,7 @@ const styles = StyleSheet.create({
     container: {
         width: 300,
         height: 150,
-        backgroundColor: "#fff",
+        backgroundColor: "#ededed",
         borderRadius: 13,
         marginTop: 20,
         borderColor: '#F8F7F7',
@@ -75,10 +74,9 @@ const styles = StyleSheet.create({
         marginTop: 5,
 
     },
-    titulo: {
-        fontSize: 20,
-        marginTop: 3,
-        marginLeft: 5,
+    title: {
+        fontSize: 18,
+        
     },
     img: {
         marginLeft: 80,
@@ -91,5 +89,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         flexWrap: "wrap",
     },
+    cont:{
+        width: 90
+    }
 
 });

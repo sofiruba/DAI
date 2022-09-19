@@ -18,7 +18,6 @@ export default function Login() {
         setLoading(true)
         axios.post('http://challenge-react.alkemy.org/', user)
             .then(res => {
-                console.log(res)
 
                 navigation.navigate('Home', { user })
                 setLoading(false)
