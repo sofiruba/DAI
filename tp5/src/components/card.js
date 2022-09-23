@@ -29,16 +29,14 @@ export default function Card({ props }) {
 
         <SafeAreaView style={[styles.container, styles.shadow]}>
             <View style={styles.row}>
-                <View>
                     <Text style={styles.title}>{plato.title}</Text>
-                    <View style={styles.cont} >
+                    <View style={styles.card}>
                         {
                             Menu.menu.includes(plato) ? <Button title="Eliminar"  color={'red'}  onPress={() => eliminar_plato(plato.id)}></Button> : <Button title="Agregar" onPress={() => agregar_plato(plato)}></Button>
                         }
                         <Text onPress={getDetalle}>Ver detalle</Text>
                         <Loading bool={isLoading}></Loading>
                     </View>
-                </View>
 
                 <View style={styles.img}>
                     <Image style={styles.image} source={{ uri: plato.image }}></Image>
@@ -62,6 +60,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         borderColor: '#F8F7F7',
         borderWidth: 1,
+
     },
     shadow: {
         shadowColor: '#171717',
@@ -91,6 +90,9 @@ const styles = StyleSheet.create({
     },
     cont:{
         width: 90
+    },
+    card: {
+        justifyContent: 'center',
     }
 
 });

@@ -46,7 +46,7 @@ export default function Home(user) {
                 <View style={styles.row}>
                     <TextInput style={styles.input} onChangeText={(text) => buscar(text)}></TextInput>
                     <View style={styles.btnBuscar} onTouchStart={() => getPlatos()}>
-                    <Text >Buscar</Text>
+                    <Text>Buscar</Text>
                         
                     </View>
                 </View>
@@ -55,8 +55,7 @@ export default function Home(user) {
                         <Loading bool={isLoading}></Loading>
                         <ListadoPlatos platos={platos}></ListadoPlatos>
                         <View style={styles.btn} onTouchStart={() => navigation.navigate('Menu', { props })} >
-                        <Text > Ver menu</Text>
-
+                        <Text> Ver menu</Text>
                         </View>
                     </MenuContext.Provider>
                 </View >
@@ -72,8 +71,8 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#f2c099',
-        height: 900
+        backgroundColor: 'rgba(249, 175, 124, 0.9)',
+        height: '100%',
     },
     row: {
         flexDirection: "row",
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: 300,
         height:50,
-        backgroundColor:"#d4a179",
+        backgroundColor:"rgba(249, 175, 124, 1)",
         alignItems:'center',
         justifyContent: 'center',
         borderRadius: 20,
@@ -117,5 +116,5 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOpacity: 0.5,
         elevation: 5 
-    }
+    },
 })
