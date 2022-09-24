@@ -66,13 +66,14 @@ export default function Home(user) {
 }
 const styles = StyleSheet.create({
     title: {
-        fontSize: 40,
+        fontSize: 38,
     },
     container: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(249, 175, 124, 0.9)',
+        backgroundColor: '#f4bfa3',
         height: '100%',
+        
     },
     row: {
         flexDirection: "row",
@@ -86,19 +87,20 @@ const styles = StyleSheet.create({
         marginRight: 5
     },
     box:{
-        height: 70,
-        width: 300,
+        height: 80,
+        width: 320,
         shadowColor: '#000',
         elevation: 5,
         shadowOpacity: 0.5,
         backgroundColor: '#f7e3d5',
-        borderRadius: 5
+        borderRadius: 5,
+        padding: 10,
     },
     btn:{
         marginTop: 20,
         width: 300,
         height:50,
-        backgroundColor:"rgba(249, 175, 124, 1)",
+        backgroundColor:"#d4a179",
         alignItems:'center',
         justifyContent: 'center',
         borderRadius: 20,

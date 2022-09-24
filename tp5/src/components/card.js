@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, SafeAreaView, Text, Image, StyleSheet , Button} from "react-native";
+import { View, SafeAreaView, Text, Image, StyleSheet, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MenuContext } from "../../App";
 import axios from "axios";
@@ -28,24 +28,19 @@ export default function Card({ props }) {
 
 
         <SafeAreaView style={[styles.container, styles.shadow]}>
-            <View style={styles.row}>
-                    <Text style={styles.title}>{plato.title}</Text>
-                    <View style={styles.card}>
-                        {
-                            Menu.menu.includes(plato) ? <Button title="Eliminar"  color={'red'}  onPress={() => eliminar_plato(plato.id)}></Button> : <Button title="Agregar" onPress={() => agregar_plato(plato)}></Button>
-                        }
-                        <Text onPress={getDetalle}>Ver detalle</Text>
-                        <Loading bool={isLoading}></Loading>
-                    </View>
-
-                <View style={styles.img}>
-                    <Image style={styles.image} source={{ uri: plato.image }}></Image>
-
+            <Text style={styles.title}>{plato.title}</Text>
+            <View style={[styles.card, styles.row]}>
+                <View>
+                    {
+                        Menu.menu.includes(plato) ? <View style={styles.boton}><Text backgroundColor={'red'} onPress={() => eliminar_plato(plato.id)}>Eliminar</Text></View> : <View style={styles.boton}><Text onPress={() => agregar_plato(plato)}>Agregar</Text></View>
+                    }
                 </View>
-
-
+                <View style={styles.cont}>
+                    <Image style={styles.image} source={{ uri: plato.image }}></Image>
+                    <Text onPress={getDetalle}>Ver detalle</Text>
+                    <Loading bool={isLoading}></Loading>
+                </View>
             </View>
-
         </SafeAreaView>
 
     )
@@ -54,12 +49,13 @@ export default function Card({ props }) {
 const styles = StyleSheet.create({
     container: {
         width: 300,
-        height: 150,
-        backgroundColor: "#ededed",
+        height: 210,
+        backgroundColor: "#fff",
         borderRadius: 13,
         marginTop: 20,
         borderColor: '#F8F7F7',
         borderWidth: 1,
+        justifyContent: 'center',
 
     },
     shadow: {
@@ -67,32 +63,39 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         elevation: 3,
     },
+
     image: {
-        height: 50,
-        width: 50,
-        marginTop: 5,
+        height: 90,
+        width: 90,
 
     },
     title: {
         fontSize: 18,
-        
-    },
-    img: {
-        marginLeft: 80,
-        marginTop: 20,
-        justifyContent: 'center',
-        alignItems: 'center'
+        padding: 8,
+        alignSelf: 'center',
+
     },
 
     row: {
         flexDirection: "row",
         flexWrap: "wrap",
     },
-    cont:{
-        width: 90
+
+    cont: {
+        alignItems: 'flex-end',
     },
+
     card: {
         justifyContent: 'center',
-    }
+    },
 
+    boton: {
+        width: 80,
+        height: 45,
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginRight: 25,
+        backgroundColor:'#d4a179',
+    },
 });

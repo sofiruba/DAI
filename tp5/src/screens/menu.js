@@ -11,7 +11,7 @@ export default function Menu(props){
     return (
         <SafeAreaView  style={styles.container} >
             <Text>Menu</Text>
-            <ScrollView style={styles.listado} >
+            <ScrollView>
             {
                 lista.map(p => (
                     <CardMenu props={{p, eliminar_plato}}></CardMenu>
@@ -26,11 +26,8 @@ const styles = StyleSheet.create({
     container:{
         justifyContent:'center',
         alignItems:'center',
-        height:900,
-        backgroundColor: '#f2c099',
+        height: 900,
+        backgroundColor: '#f4bfa3',
 
     },
-    listado:{
-        marginTop: 0,
-    }
 })

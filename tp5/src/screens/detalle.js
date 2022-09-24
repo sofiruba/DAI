@@ -10,26 +10,24 @@ export default function Detalle(plato_detalle) {
     return (
         <View style={styles.pag}>
             <View style={styles.content}>
-                <View>
                 <Text style={styles.text}>{p.title}</Text>
-                </View>
                 <Image style={styles.img} source={{uri : p.image}} />
                 <View>
-                    <Text>Tiempo de preparacion: {p.readyInMinutes} Minutos</Text>
-                    <Text>{p.servings} porciones </Text>
+                    <Text style={styles.text2}>Tiempo de preparacion: {p.readyInMinutes} Minutos</Text>
+                    <Text style={styles.text2}>{p.servings} porciones </Text>
                     {
-                        p.ketogenic ? <Text>Apto para dieta Keto </Text> : <Text>No apto Keto</Text>
+                        p.ketogenic ? <Text style={styles.text2}>Apto para dieta Keto </Text> : <Text style={styles.text2}>No apto para dieta Keto</Text>
 
                     }
                     {                       
-                       p.vegan ? <Text>Es vegano </Text> : <Text>No apto vegano</Text>
+                       p.vegan ? <Text style={styles.text2}>Vegano </Text> : <Text style={styles.text2}>No apto vegano</Text>
                     }
                                         {                       
-                       p.vegetarian ? <Text>Vegetariano </Text> : <Text>No apto vegetariano</Text>
+                       p.vegetarian ? <Text style={styles.text2}>Vegetariano </Text> : <Text style={styles.text2}>No apto vegetariano</Text>
                     }
                 </View>
                 <View style={styles.boton}>
-                <Button title='Ir a home' color="#88ba93" onPress={() => navigation.goBack()}></Button>
+                <Text color="#88ba93" style={{fontSize:18}} onPress={() => navigation.goBack()}>Ir a home</Text>
                 </View>
             </View>
         </View>
@@ -49,7 +47,8 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         height: '100%',
         width: '100%',
-        padding: 10,
+        padding:10,
+        
     },
     img: {
         height: 230,
@@ -57,17 +56,23 @@ const styles = StyleSheet.create({
         marginTop: 2,
         justifyContent: 'center',
         resizeMode: 'contain',
-        borderRadius: 10,
     },
     text: {
-        fontSize: 20,
+        fontSize: 30,
         alignSelf: 'center',
+    },
+    text2:{
+        fontSize: 20,
     },
     boton: {
         width:100,
-        height: 100,
+        height: 50,
         alignSelf: 'center',
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 50,
+        backgroundColor:'#d4a179',
+        borderRadius: 15,
     },
 
 })
