@@ -20,10 +20,10 @@ export default function Detalle(plato_detalle) {
 
                     }
                     {                       
-                       p.vegan ? <Text style={styles.text2}>Vegano </Text> : <Text style={styles.text2}>No apto vegano</Text>
+                       p.vegan ? <Text style={styles.textv}>Vegano </Text> : <Text style={styles.textv}>No apto vegano</Text>
                     }
                                         {                       
-                       p.vegetarian ? <Text style={styles.text2}>Vegetariano </Text> : <Text style={styles.text2}>No apto vegetariano</Text>
+                       p.vegetarian ? <Text style={styles.textv}>Vegetariano </Text> : <Text style={styles.textv}>No apto vegetariano</Text>
                     }
                 </View>
                 <View style={styles.boton}>
@@ -63,6 +63,10 @@ const styles = StyleSheet.create({
     },
     text2:{
         fontSize: 20,
+    },
+    textv:{
+        fontSize: 20,
+        color:'green',
     },
     boton: {
         width:100,
