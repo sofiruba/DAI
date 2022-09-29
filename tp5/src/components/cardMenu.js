@@ -24,8 +24,9 @@ export default function CardMenu({ props }) {
                 <Text>{props.p.title}</Text>
             </View>
 
-            <View>
-                <Image style={styles.img} source={{ uri: plato.image }}></Image>
+            <View onTouchStart={getDetalle}>
+                <Image style={styles.img}
+                 source={{ uri: plato.image }}></Image>
             </View>
             <View style={styles.boton}>
                 <Text onPress={() => {
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     container: {
         height: 210,
         marginTop: 30,
-        width: 250,
+        width: 300,
         backgroundColor: 'red',
         borderRadius: 15,
         marginLeft: 20,

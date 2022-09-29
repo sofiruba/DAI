@@ -16,24 +16,22 @@ export default function Detalle(plato_detalle) {
                     <View style={styles.reloj}>
                         <Text style={styles.reloj2}>L</Text>
                     </View>
-                    <Text style={styles.text2}> : {p.readyInMinutes} Minutos</Text>
+                    <Text style={styles.text2}> {p.readyInMinutes} min</Text>
                 </View>  
                 <View style={styles.row}>
                     <View style={styles.bckporciones}>
-                        <Text style={[styles.text2, {color:'#f7e3d5'}]}>{p.servings}</Text>
+                        <Text style={[styles.text5, {color:'#f7e3d5'}]}>{p.servings}</Text>
                     </View>
                     <Text style={styles.text2}> porciones</Text>
                 </View>
+                <View style={styles.listado} >                
                 {
-                    p.ketogenic ? <Text style={styles.text2}>Apto para dieta Keto </Text> : <Text style={styles.text2}>No apto para dieta Keto</Text>
-
+                    p.vegan ? <Image style={styles.tinyimg} source={{uri: 'https://upload.wikimedia.org/wikipedia/commons/3/35/Vegetarian.png'}}></Image> : <Image style={styles.tinyimg} source={{uri: 'http://cdn.shopify.com/s/files/1/0598/7024/9129/files/Logo_Not_Vegan_Alta_66113bb3-cb9a-47cd-9216-d4f5ff7d4617.png?v=1635204073'}}></Image>
                 }
                 {
-                    p.vegan ? <Text style={styles.textv}>Vegano </Text> : <Text style={styles.textv2}>No apto vegano</Text>
+                    p.vegetarian ? <Image style={styles.tinyimg} source={{uri: 'https://images.vexels.com/media/users/3/207374/isolated/preview/13b01a3ed103ff17233aa8dcca6d5313-insignia-verde-redonda-vegetariana.png'}}></Image> : <Text style={styles.textv2}></Text>
                 }
-                {
-                    p.vegetarian ? <Text style={styles.textv}>Vegetariano </Text> : <Text style={styles.textv2}>No apto vegetariano</Text>
-                }
+                </View>
                 <View style={styles.boton}>
                     <Text color="#88ba93" style={{ fontSize: 18 }} onPress={() => navigation.goBack()}>Ir a home</Text>
                 </View>
@@ -61,6 +59,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         flexWrap: "wrap",
+        marginTop: 5,
     },
     img: {
         height: 230,
@@ -110,11 +109,24 @@ const styles = StyleSheet.create({
         marginLeft: 2,
     },
     bckporciones: {
-        width: 35,
-        height: 35,
+        width: 30,
+        height: 30,
         backgroundColor: '#d4a179',
         alignItems: 'center',
         borderRadius: 7,
     },
+    listado:{
+        flexDirection: "row",
+        flexWrap: "wrap",
+        marginTop:5,
+        alignItems: 'center',
+    },
+    text5:{
+        fontSize:18
+    },
+    tinyimg:{
+        width:70,
+        height:70
+    }
 
 })

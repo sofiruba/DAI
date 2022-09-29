@@ -49,7 +49,7 @@ export default function Card({ props }) {
 const styles = StyleSheet.create({
     container: {
         width: 300,
-        height: 210,
+        height: 200,
         backgroundColor: "#fff",
         borderRadius: 13,
         marginTop: 20,

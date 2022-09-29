@@ -53,10 +53,11 @@ export default function Home(user) {
                 <View>
                     <MenuContext.Provider value={props}>
                         <Loading bool={isLoading}></Loading>
-                        <ListadoPlatos platos={platos}></ListadoPlatos>
                         <View style={styles.btn} onTouchStart={() => navigation.navigate('Menu', { props })} >
                         <Text> Ver menu</Text>
                         </View>
+                        <ListadoPlatos platos={platos}></ListadoPlatos>
+
                     </MenuContext.Provider>
                 </View >
             </View>
@@ -67,6 +68,8 @@ export default function Home(user) {
 const styles = StyleSheet.create({
     title: {
         fontSize: 38,
+        fontWeight: 'bold',
+        marginTop: 40
     },
     container: {
         justifyContent: 'center',
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
     btn:{
         marginTop: 20,
         width: 300,
-        height:50,
+        height:30,
         backgroundColor:"#d4a179",
         alignItems:'center',
         justifyContent: 'center',

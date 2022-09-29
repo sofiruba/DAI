@@ -19,7 +19,7 @@ export default function ListadoPlatos({ platos }) {
 } 
 const styles = StyleSheet.create({
     container:{
-        height: 500,
+        height: 580,
         marginTop: 20,
 
     },
