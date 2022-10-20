@@ -4,10 +4,11 @@ import { useState } from 'react';
 
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
-  const crearAlerta = () =>
+  const [count, setCount] = useState(0)
+   const crearAlerta = () =>
     Alert.alert(
-      "Esto es una alerta",
-      "Aca va el mensaje",
+      "Alerta",
+      "En la alerta solamente podemos poner un titulo y un mensaje, podemos elegir que botones poner, pero todos al ser presionados cierran la alerta"
       [
         {
           text: "Cerrar",
@@ -38,7 +39,14 @@ export default function App() {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Esto es un modal</Text>
+            <Text style={styles.modalText}>Esto es un modal, es como una view aparte en la cual para hacerla visible y luego sacarla debemos hacerlo manualmemte</Text>
+            <Text>{count}</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setCount(count+1)}
+            >
+              <Text style={styles.textStyle}>Contador</Text>
+            </Pressable>
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setModalVisible(!modalVisible)}
