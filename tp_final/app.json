@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "tp_final",
+    "slug": "tp_final",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
