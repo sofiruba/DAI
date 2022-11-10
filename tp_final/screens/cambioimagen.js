@@ -41,9 +41,10 @@ export default function CambioImagen() {
 
   return (
     <View style={styles.screen}>
+      <Text style={{textAlign: 'center'}}>¿Como te gustaría seleccionar tu fondo?</Text>
       <View style={styles.buttonContainer}>
-        <Button onPress={showImagePicker} title="Select an image" />
-        <Button onPress={openCamera} title="Open camera" />
+        <Button onPress={showImagePicker} title="Desde galería" />
+        <Button onPress={openCamera} title="Desde la cámara" />
       </View>
 
       <View style={styles.imageContainer}>
