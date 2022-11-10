@@ -6,7 +6,7 @@ import CambioImagen from './screens/cambioimagen';
 
 export default function App() {
   return (
-    <Main/>
+    < CambioImagen/>
   );
 }
 
