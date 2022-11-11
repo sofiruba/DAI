@@ -13,7 +13,7 @@ export default function Main() {
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
         <Stack.Screen name="Contactos" component={Contactos} options={{ headerShown: false }} />
         <Stack.Screen name="Clima" component={Clima} options={{ headerShown: false }} />
-        <Stack.Screen name="Home" component={CambioImagen} options={{ headerShown: false }} />
+        <Stack.Screen name="CambioImagen" component={CambioImagen} options={{ headerShown: false }} />
 
       </Stack.Navigator>
     </NavigationContainer>
