@@ -5,6 +5,7 @@ import { View, Text, PermissionsAndroid} from "react-native";
 import axios from 'axios'
 import {useState, useEffect} from 'react'
 import GeoLocation from 'react-native-geolocation-service'
+import { Button } from "react-native-web";
 export default function Clima(){
     const [temp, setTemp] = useState({temp: 0, temp_min: 0, temp_max: 0})
     const [location, setLocation] = useState(null)
@@ -49,7 +50,8 @@ export default function Clima(){
         }
     }
     const getClima = () => {
-        return axios.get('http://api.openweathermap.org/data/2.5/weather', {params:{lat : location.latitude, lon: location.longitude, APPID: '467eb2e2a1738c82e813a30610d7c354' }})
+        obtenerUbicacion()
+        return axios.get('http://api.openweathermap.org/data/2.5/weather', {params:{lat : location.coords.latitude, lon: location.coords.longitude, APPID: '467eb2e2a1738c82e813a30610d7c354' }})
         .then(res => {
             if(res.status === 200){
                 setTemp(res.data.main)
@@ -63,12 +65,15 @@ export default function Clima(){
     }
 
     useEffect(()=> {
-        getClima()
+        obtenerUbicacion()
     })
+
+    console.log(location)
     return(
         <View>
-            <Text>lat : {location.latitude } long: {location.longitude}</Text>
+            <Text>lat: {location.coords.latitude } long: {location.coords.longitude}</Text>
             <Text>Temperatura actual: {parseFloat(temp.temp- 273.15).toFixed(2)}° </Text>
+            <Button title='Obtener clima' onClick={getClima} ></Button>
         </View>
     )
 }
