@@ -45,7 +45,7 @@ export default function Contactos() {
             return contactos.map((contact, index) => {
                 return (
                     <View key={index} style={styles.contact}>
-                       { /* <SafeAreaView>
+                       { /* <SafeAreaView key={index} style={styles.contact} >
             <FlatList 
             data = {contact}
             extraData= {contact}
