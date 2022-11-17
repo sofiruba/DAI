@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: 'row',
-        
+
     },
     contmini: {
         width: 90,
