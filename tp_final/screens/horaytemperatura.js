@@ -5,9 +5,13 @@ import { View, Text, StyleSheet } from "react-native";
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import * as Location from 'expo-location'
+import { ImageBackground } from "react-native";
+import { useContext } from "react";
+import FondoContext from "../context/fondocontext";
 export default function Clima() {
     const [temp, setTemp] = useState(0)
     const [location, setLocation] = useState(null)
+    const [fondo, setFondo] = useContext(FondoContext)
 
     useEffect(() => {
         (async () => {
@@ -37,8 +41,8 @@ export default function Clima() {
     console.log(temp)
 
     return (
+        <ImageBackground source={{ uri: fondo }} style={{width: '100%',  justifyContent: "center", alignItems: 'center'}}>
         <View style={styles.container}>
-
             <Text style={styles.title}>Temperatura </Text>
             <Text>Puede tardar unos segundos por la api..</Text>
             <View style={styles.cont}>
@@ -55,8 +59,9 @@ export default function Clima() {
                 </View>
 
             </View>
-
-        </View>
+            </View>
+            </ImageBackground>
+     
     )
 }
 const styles = StyleSheet.create({

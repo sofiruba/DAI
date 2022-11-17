@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, Button } from 'react-native';
+import { View, Text, StyleSheet, Image, Button, ImageBackground } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import * as MediaLibrary from 'expo-media-library';
+import { useContext } from 'react';
+import FondoContext from '../context/fondocontext';
 
 export default function CambioImagen() {
-  const [pickedImagePath, setPickedImagePath] = useState('');
+  const [fondo, setFondo] = useContext(FondoContext);
   const showImagePicker = async () => {
     // Permisos 
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -15,7 +18,7 @@ export default function CambioImagen() {
     console.log(result);
 
     if (!result.cancelled) {
-      setPickedImagePath(result.uri);
+      setFondo(result.uri);
       console.log(result.uri);
     }
   }
@@ -34,13 +37,35 @@ export default function CambioImagen() {
     console.log(result);
 
     if (!result.cancelled) {
-      setPickedImagePath(result.uri);
+      setFondo(result.uri);
       console.log(result.uri);
     }
   }
+  const guardarFoto = async (item) => {
+    const permission = await MediaLibrary.requestPermissionsAsync();
+    if (permission.granted) {
+      try {
+        const asset = await MediaLibrary.createAssetAsync(item);
+        MediaLibrary.createAlbumAsync('Images', asset, false)
+          .then(() => {
+            console.log('File Saved Successfully!'); // acá iría mensajes al usuario
+          })
+          .catch(() => {
+            console.log('Error In Saving File!');
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log('Need Storage permission to save file');
+    }
+  };
+
 
   return (
+  
     <View style={styles.screen}>
+        <ImageBackground source={{ uri: fondo }} style={{width: '100%',  justifyContent: "center", alignItems: 'center'}}>
       <Text style={{textAlign: 'center'}}>¿Como te gustaría seleccionar tu fondo?</Text>
       <View style={styles.buttonContainer}>
         <Button onPress={showImagePicker} title="Desde galería" />
@@ -49,13 +74,16 @@ export default function CambioImagen() {
 
       <View style={styles.imageContainer}>
         {
-          pickedImagePath !== '' && <Image
-            source={{ uri: pickedImagePath }}
+          fondo !== '' && <Image
+            source={{ uri: fondo }}
             style={styles.image}
           />
         }
+        <Button onPress={() => guardarFoto(fondo)} title="Guardar" />
       </View>
+      </ImageBackground>
     </View>
+
   );
 }
 

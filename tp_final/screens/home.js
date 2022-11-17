@@ -2,9 +2,14 @@ import react from "react"
 import { Text, Pressable, View, StyleSheet } from "react-native"
 import { useNavigation} from '@react-navigation/native'
 import About from "../components/about"
+import { useContext } from "react"
+import FondoContext from "../context/fondocontext"
+import { ImageBackground } from "react-native"
 export default function Home() {
+    const [fondo, setFondo] = useContext(FondoContext)
     const navigation = useNavigation()
     return (
+        <ImageBackground source={{ uri: fondo }} style={{width: '100%',  justifyContent: "center"}}>
         <View style={styles.container}>
             <Text style={styles.title}>TP Final DAI</Text>
             <Pressable
@@ -27,6 +32,7 @@ export default function Home() {
             </Pressable>
             <About></About>
         </View>
+        </ImageBackground>
     )
 }
 

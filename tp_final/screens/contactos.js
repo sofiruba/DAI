@@ -1,13 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView, ScrollView, TextInput, FlatList} from 'react-native';
 import * as Contacts from 'expo-contacts';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import CardContacto from '../components/cardContactos';
+import FondoContext from '../context/fondocontext';
+import { ImageBackground } from 'react-native';
+import React from 'react';
 
 export default function Contactos() {
     let [error, setError] = useState(undefined);
     let [contactos, setContactos] = useState(undefined);
-
+    const [ fondo, setFondo ] = React.useContext(FondoContext);
     useEffect(() => {
         (async () => {
             const { status } = await Contacts.requestPermissionsAsync();
@@ -19,10 +22,10 @@ export default function Contactos() {
                 if (data.length > 0) {
                     setContactos(data);
                 } else {
-                    setError("No se han encontrado contactos");
+                    setError("No se han encontrado contactos"); // acá iría mensajes al usuario
                 }
             } else {
-                setError("El acceso ha sido denegado.");
+                setError("El acceso ha sido denegado."); // acá iría mensajes al usuario
             }
         })();
     }, []);
@@ -70,6 +73,7 @@ export default function Contactos() {
 
     return (
         <SafeAreaView style={styles.container}>
+            <ImageBackground source={{ uri: fondo }} style={{width: '100%',  justifyContent: "center", alignItems: 'center'}}>
             <View>
                 <Text style={styles.title}>Esta es tu lista de contactos:</Text>
 
@@ -79,6 +83,7 @@ export default function Contactos() {
             </ScrollView>
             <Text>{error}</Text>
             <StatusBar style="auto" />
+            </ImageBackground>
         </SafeAreaView>
     );
 }

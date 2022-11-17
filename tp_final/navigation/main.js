@@ -10,10 +10,10 @@ import { useState } from 'react';
 
 export default function Main() {
   const Stack = createNativeStackNavigator();
-  const [fondo, setFondo] = React.useState('');
+  const [fondo, setFondo] = React.useState('https://64.media.tumblr.com/021d1962d8614b29860472de90940707/tumblr_p8ux6yfgCM1uadsz3o3_1280.jpg');
 
   return (
-    <FondoProvider value={{ fondo, setFondo }}>
+    <FondoProvider value={[ fondo, setFondo ]}>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />

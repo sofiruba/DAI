@@ -7,9 +7,9 @@ export default function CardContacto(props) {
     return (
         <View>
             <Text></Text>
-            <Text>Name: {contact.firstName} {contact.lastName}</Text>
-            {contact.birthday ? <Text>Birthday: {contact.birthday.month}/{contact.birthday.day}/{contact.birthday.year}</Text> : undefined}
-            {getContactData(contact.phoneNumbers, "number")}
+            <Text>Nombre: {contact.firstName} {contact.lastName}</Text>
+            {contact.birthday ? <Text>Cumpleaños: {contact.birthday.month}/{contact.birthday.day}/{contact.birthday.year}</Text> : undefined}
+            {getContactData(contact.phoneNumbers, "numero")}
             {getContactData(contact.emails, "email")}
         </View>
     )
