@@ -1,12 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, TextInput, FlatList} from 'react-native';
 import * as Contacts from 'expo-contacts';
 import { useEffect, useState } from 'react';
+import CardContacto from '../components/cardContactos';
 
 export default function Contactos() {
     let [error, setError] = useState(undefined);
     let [contactos, setContactos] = useState(undefined);
-    const [search, setSearch] = useState('')
 
     useEffect(() => {
         (async () => {
@@ -39,29 +39,29 @@ export default function Contactos() {
         }
     }
 
+    const renderItem = ({ item}) => {
+        return(
+            <CardContacto props={{contact: item, getContactData: getContactData}}/>
+        )
+    }
     let getContactRows = () => {
         if ((contactos !== undefined)) {
+            
 
-            return contactos.map((contact, index) => {
+           
                 return (
-                    <View key={index} style={styles.contact}>
-                       { /* <SafeAreaView key={index} style={styles.contact} >
-            <FlatList 
-            data = {contact}
-            extraData= {contact}
-            keyExtractor= {index => index.toString()}
-            renderItem = {  }
-            ItemSeparatorComponent = {() => <View style= {{ marginVertical: 10, borderColor: '#00000020', borderWidth: 1, marginHorizontal: 10,}}/>}
-            ListHeaderComponent = {()=><Text style = {{fontWeight: 'bold', marginBottom: 10, marginHorizontal: 10, fontSize: 15}}>Contactos</Text>}
-            />
-                </SafeAreaView> */}
-                        <Text>Name: {contact.firstName} {contact.lastName}</Text>
-                        {contact.birthday ? <Text>Birthday: {contact.birthday.month}/{contact.birthday.day}/{contact.birthday.year}</Text> : undefined}
-                        {getContactData(contact.phoneNumbers, "number")}
-                        {getContactData(contact.emails, "email")}
+                    <View  style={styles.contact} >
+                        <FlatList
+                            data={contactos}
+                            keyExtractor={(item) => item.id}
+                            renderItem={renderItem}
+                            ItemSeparatorComponent={() => <View style={{ marginVertical: 10, borderColor: '#00000020', borderWidth: 1, marginHorizontal: 10, }} />}
+                            ListHeaderComponent={() => <Text style={{ fontWeight: 'bold', marginBottom: 10, marginHorizontal: 10, fontSize: 15 }}>Contactos</Text>}
+                        />
                     </View>
+
                 );
-            });
+           
 
         } else {
             return <Text>Esperando Contactos...</Text>
@@ -70,7 +70,10 @@ export default function Contactos() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={{ marginTop: 80 }}>ESTA ES SU LISTA DE CONTACTOS:</Text>
+            <View>
+                <Text style={styles.title}>Esta es tu lista de contactos:</Text>
+
+            </View>
             <ScrollView>
                 {getContactRows()}
             </ScrollView>
@@ -82,7 +85,6 @@ export default function Contactos() {
 
 const styles = StyleSheet.create({
     container: {
-        display: 'flex',
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
@@ -90,6 +92,12 @@ const styles = StyleSheet.create({
     contact: {
         marginVertical: 8,
         marginBotton: 50,
-        marginTop: 32
+        marginTop: 32,
+        width: 260
+        },
+    title: {
+        marginTop: 80,
+        fontSize: 20,
+        fontWeight: 'bold'
     }
 });
