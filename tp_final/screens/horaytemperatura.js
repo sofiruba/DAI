@@ -12,6 +12,8 @@ export default function Clima() {
     const [temp, setTemp] = useState(0)
     const [location, setLocation] = useState(null)
     const [fondo, setFondo] = useContext(FondoContext)
+    const [currentDate, setCurrentDate] = useState('');
+    
     useEffect(() => {
         var date = new Date().getDate(); //Current Date
         var month = new Date().getMonth() + 1; //Current Month
