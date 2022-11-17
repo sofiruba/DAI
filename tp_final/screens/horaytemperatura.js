@@ -12,7 +12,18 @@ export default function Clima() {
     const [temp, setTemp] = useState(0)
     const [location, setLocation] = useState(null)
     const [fondo, setFondo] = useContext(FondoContext)
-
+    useEffect(() => {
+        var date = new Date().getDate(); //Current Date
+        var month = new Date().getMonth() + 1; //Current Month
+        var year = new Date().getFullYear(); //Current Year
+        var hours = new Date().getHours(); //Current Hours
+        var min = new Date().getMinutes(); //Current Minutes
+        var sec = new Date().getSeconds(); //Current Seconds
+        setCurrentDate(
+            date + '/' + month + '/' + year
+            + ' ' + hours + ':' + min + ':' + sec
+        );
+    }, []);
     useEffect(() => {
         (async () => {
             const { status } = await Location.requestForegroundPermissionsAsync()
@@ -43,6 +54,7 @@ export default function Clima() {
     return (
         <ImageBackground source={{ uri: fondo }} style={{width: '100%',  justifyContent: "center", alignItems: 'center'}}>
         <View style={styles.container}>
+        <Text>{currentDate}</Text>
             <Text style={styles.title}>Temperatura </Text>
             <Text>Puede tardar unos segundos por la api..</Text>
             <View style={styles.cont}>
