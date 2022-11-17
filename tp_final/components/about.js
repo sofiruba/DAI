@@ -15,20 +15,21 @@ export default function About() {
     return (
         <View>
             <Button title="Abrir camara" onPress={() => setIsOpen(!isOpen)}></Button>
-           
+
             <Button title="Ver integrantes" ></Button>
             <Modal
                 animationType="slide"
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
-                    Alert.alert("Modal cerrado");
+                    Alert.alert('', '¡Modal cerrado!')
+                    Vibration.vibrate(1000);
                     setModalVisible(!modalVisible);
                 }}
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        
+
                     </View>
                 </View>
             </Modal>

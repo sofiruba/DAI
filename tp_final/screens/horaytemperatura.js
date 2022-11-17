@@ -13,7 +13,7 @@ export default function Clima() {
     const [location, setLocation] = useState(null)
     const [fondo, setFondo] = useContext(FondoContext)
     const [currentDate, setCurrentDate] = useState('');
-    
+
     useEffect(() => {
         var date = new Date().getDate(); //Current Date
         var month = new Date().getMonth() + 1; //Current Month
@@ -31,6 +31,8 @@ export default function Clima() {
             const { status } = await Location.requestForegroundPermissionsAsync()
             if (status !== 'granted') {
                 console.log('permiso denegado')
+                Alert.alert('', 'Se requieren permisos para acceder a la ubicación')
+                Vibration.vibrate(1000);
             }
             setLocation(await Location.getCurrentPositionAsync({}))
             const { latitude, longitude } = location.coords
@@ -48,34 +50,36 @@ export default function Clima() {
             })
             .catch(err => {
                 console.log(err)
+                Alert.alert('', 'Hubo un error, intente nuevamente')
+                Vibration.vibrate(1000);
             }
             )
     }
     console.log(temp)
 
     return (
-        <ImageBackground source={{ uri: fondo }} style={{width: '100%',  justifyContent: "center", alignItems: 'center'}}>
-        <View style={styles.container}>
-        <Text>{currentDate}</Text>
-            <Text style={styles.title}>Temperatura </Text>
-            <Text>Puede tardar unos segundos por la api..</Text>
-            <View style={styles.cont}>
-                <Text style={styles.temp}>{parseFloat(temp.temp - 273.15).toFixed(1)}</Text>
-            </View>
-            <View style={styles.row}>
-                <View style={styles.contmini}>
-                    <Text>Minima</Text>
-                    <Text style={styles.tempmini}>{parseFloat(temp.temp_min - 273.15).toFixed(1)}</Text>
+        <ImageBackground source={{ uri: fondo }} style={{ width: '100%', justifyContent: "center", alignItems: 'center' }}>
+            <View style={styles.container}>
+                <Text>{currentDate}</Text>
+                <Text style={styles.title}>Temperatura </Text>
+                <Text>Puede tardar unos segundos por la api..</Text>
+                <View style={styles.cont}>
+                    <Text style={styles.temp}>{parseFloat(temp.temp - 273.15).toFixed(1)}</Text>
                 </View>
-                <View style={styles.contmini}>
-                    <Text>Maxima</Text>
-                    <Text style={styles.tempmini}>{parseFloat(temp.temp_max - 273.15).toFixed(1)}</Text>
-                </View>
+                <View style={styles.row}>
+                    <View style={styles.contmini}>
+                        <Text>Minima</Text>
+                        <Text style={styles.tempmini}>{parseFloat(temp.temp_min - 273.15).toFixed(1)}</Text>
+                    </View>
+                    <View style={styles.contmini}>
+                        <Text>Maxima</Text>
+                        <Text style={styles.tempmini}>{parseFloat(temp.temp_max - 273.15).toFixed(1)}</Text>
+                    </View>
 
+                </View>
             </View>
-            </View>
-            </ImageBackground>
-     
+        </ImageBackground>
+
     )
 }
 const styles = StyleSheet.create({

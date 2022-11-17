@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, Button, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, Image, Button, ImageBackground, Vibration, Alert} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as MediaLibrary from 'expo-media-library';
 import { useContext } from 'react';
@@ -11,7 +11,8 @@ export default function CambioImagen() {
     // Permisos 
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissionResult.granted === false) {
-      alert("You've refused to allow this appp to access your photos!"); // acá iría mensajes al usuario
+      Alert.alert('', 'Se requieren permisos para acceder a la galería')
+      Vibration.vibrate(1000); 
       return;
     }
     const result = await ImagePicker.launchImageLibraryAsync();
@@ -28,7 +29,8 @@ export default function CambioImagen() {
     const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
 
     if (permissionResult.granted === false) {
-      alert("You've refused to allow this appp to access your camera!"); // acá iría mensajes al usuario
+      Alert.alert('', 'Se necesita permiso para acceder a la cámara')
+      Vibration.vibrate(1000); 
       return;
     }
 
@@ -48,16 +50,26 @@ export default function CambioImagen() {
         const asset = await MediaLibrary.createAssetAsync(item);
         MediaLibrary.createAlbumAsync('Images', asset, false)
           .then(() => {
-            console.log('File Saved Successfully!'); // acá iría mensajes al usuario
+            console.log('File Saved Successfully!')
+            Alert.alert('', '¡Archivo guardado con éxito!')
+            Vibration.vibrate(1000); 
+            ;
+          
           })
           .catch(() => {
-            console.log('Error In Saving File!');
+            console.log('Error In Saving File!')
+            Alert.alert('', '¡Error en guardar el archivo!')
+            Vibration.vibrate(1000); ;
           });
       } catch (error) {
         console.log(error);
+        Alert.alert('', 'Error, intete nuevamente')
+            Vibration.vibrate(1000); 
       }
     } else {
       console.log('Need Storage permission to save file');
+      Alert.alert('', 'Se necesita permiso de almacenamiento para guardar el archivo')
+      Vibration.vibrate(1000); 
     }
   };
 
