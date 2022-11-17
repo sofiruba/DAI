@@ -8,7 +8,7 @@ export default function CambioImagen() {
     // Permisos 
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (permissionResult.granted === false) {
-      alert("You've refused to allow this appp to access your photos!");
+      alert("You've refused to allow this appp to access your photos!"); // acá iría mensajes al usuario
       return;
     }
     const result = await ImagePicker.launchImageLibraryAsync();
@@ -25,7 +25,7 @@ export default function CambioImagen() {
     const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
 
     if (permissionResult.granted === false) {
-      alert("You've refused to allow this appp to access your camera!");
+      alert("You've refused to allow this appp to access your camera!"); // acá iría mensajes al usuario
       return;
     }
 
