@@ -8,6 +8,21 @@ import * as Location from 'expo-location'
 export default function Clima() {
     const [temp, setTemp] = useState(0)
     const [location, setLocation] = useState(null)
+    const [currentDate, setCurrentDate] = useState('');
+
+    useEffect(() => {
+        var date = new Date().getDate(); //Current Date
+        var month = new Date().getMonth() + 1; //Current Month
+        var year = new Date().getFullYear(); //Current Year
+        var hours = new Date().getHours(); //Current Hours
+        var min = new Date().getMinutes(); //Current Minutes
+        var sec = new Date().getSeconds(); //Current Seconds
+        setCurrentDate(
+            date + '/' + month + '/' + year
+            + ' ' + hours + ':' + min + ':' + sec
+        );
+    }, []);
+
 
     useEffect(() => {
         (async () => {
@@ -38,6 +53,7 @@ export default function Clima() {
 
     return (
         <View style={styles.container}>
+            <Text>{currentDate}</Text>
 
             <Text style={styles.title}>Temperatura </Text>
             <Text>Puede tardar unos segundos por la api..</Text>
@@ -89,7 +105,7 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: 'row',
-        
+
     },
     contmini: {
         width: 90,
