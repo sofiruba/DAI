@@ -3,7 +3,7 @@ Cada Aplicación debe tener una pantalla de About (Acerca de) que tenga un códi
 , pero a su vez un botón que les permita escanear otra app y les muestre en un Modal quienes fueron los integrantes de la aplicación Escaneada!
  */
 import { useState } from "react";
-import { Button, View, StyleSheet, Modal, Pressable } from "react-native";
+import { Button, View, StyleSheet, Modal, Pressable, Alert } from "react-native";
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 

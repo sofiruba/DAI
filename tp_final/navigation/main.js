@@ -7,7 +7,7 @@ import Clima from '../screens/horaytemperatura';
 import CambioImagen from '../screens/cambioimagen';
 import { FondoProvider } from '../context/fondocontext';
 import { useState } from 'react';
-import About from '../components/about'
+import About from '../screens/about'
 
 export default function Main() {
   const Stack = createNativeStackNavigator();

@@ -1,7 +1,6 @@
 import react from "react"
 import { Text, Pressable, View, StyleSheet } from "react-native"
 import { useNavigation } from '@react-navigation/native'
-import About from "../components/about"
 import { useContext } from "react"
 import FondoContext from "../context/fondocontext"
 import { ImageBackground } from "react-native"
