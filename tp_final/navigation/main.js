@@ -7,6 +7,7 @@ import Clima from '../screens/horaytemperatura';
 import CambioImagen from '../screens/cambioimagen';
 import { FondoProvider } from '../context/fondocontext';
 import { useState } from 'react';
+import About from '../components/about'
 
 export default function Main() {
   const Stack = createNativeStackNavigator();
@@ -20,6 +21,8 @@ export default function Main() {
         <Stack.Screen name="Contactos" component={Contactos} options={{ headerShown: false }} />
         <Stack.Screen name="Clima" component={Clima} options={{ headerShown: false }} />
         <Stack.Screen name="CambioImagen" component={CambioImagen} options={{ headerShown: false }} />
+        <Stack.Screen name="About" component={About} options={{ headerShown: false }} />
+
       </Stack.Navigator>
     </NavigationContainer>
     </FondoProvider>
