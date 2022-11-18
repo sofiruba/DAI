@@ -3,9 +3,8 @@ Cada Aplicación debe tener una pantalla de About (Acerca de) que tenga un códi
 , pero a su vez un botón que les permita escanear otra app y les muestre en un Modal quienes fueron los integrantes de la aplicación Escaneada!
  */
 import { useState, useEffect } from "react";
-import { Button, View, StyleSheet, Modal, Pressable, Alert, Text } from "react-native";
+import { Button, View, StyleSheet, Modal, Pressable, Alert, Text, Image } from "react-native";
 import { BarCodeScanner } from 'expo-barcode-scanner';
-
 
 
 export default function About() {
@@ -52,39 +51,16 @@ export default function About() {
 
     return (
         <View>
-            <Button title="Abrir camara" onPress={() => setIsOpen(!isOpen)}></Button>
-
-            <Button title="Ver integrantes" ></Button>
             <View style={styles.barcodebox}>
                         <BarCodeScanner
                             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                             style={{ height: 550, width: 400 }} />
                     </View>
+                   <Button title={text} />
                     <Text style={styles.maintext}>{text}</Text>
 
                     {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='#556b2f' />}
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert('', '¡Modal cerrado!')
-                    Vibration.vibrate(1000);
-                    setModalVisible(!modalVisible);
-                }}
-            >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-
-                    </View>
-                </View>
-            </Modal>
-            <Pressable
-                style={[styles.button, styles.buttonOpen]}
-                onPress={() => setModalVisible(true)}
-            >
-            </Pressable>
-
+                    <Image source={require('../src/qr.jpg')} />
         </View>
     )
 }
