@@ -12,7 +12,7 @@ export default function About() {
     const [modalVisible, setModalVisible] = useState(false);
     const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-  const [text, setText] = useState('Not yet scanned')
+  const [text, setText] = useState('todavía no se scaneó')
 
   const askForCameraPermission = () => {
     (async () => {
@@ -29,6 +29,7 @@ export default function About() {
   // What happens when we scan the bar code
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
+    setModalVisible(true);
     setText(data)
     console.log('Type: ' + type + '\nData: ' + data)
   };
@@ -50,17 +51,35 @@ export default function About() {
 
 
     return (
-        <View>
+        <View style={styles.container}>
             <View style={styles.barcodebox}>
                         <BarCodeScanner
                             onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                             style={{ height: 550, width: 400 }} />
                     </View>
-                   <Button title={text} />
-                    <Text style={styles.maintext}>{text}</Text>
-
-                    {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='#556b2f' />}
-                    <Image source={require('../src/qr.jpg')} />
+                    {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='#F194FF' />}
+                    <Image source={require('../src/qr.jpg')} style={{width: 200, height: 200}} />
+                    <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>{text}</Text>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}
+            >
+              <Text style={styles.textStyle}>Cerrar</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
         </View>
     )
 }
@@ -104,7 +123,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#F194FF",
     },
     buttonClose: {
-        backgroundColor: "#2196F3",
+        backgroundColor: "#F194FF",
     },
     textStyle: {
         color: "white",
@@ -122,10 +141,8 @@ const styles = StyleSheet.create({
       barcodebox: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: '70%',
-        width: '90%',
-        overflow: 'hidden',
+        height: 500,
+        width: 500,
         borderRadius: 30,
-        backgroundColor: '#556b2f'
       }
 });
